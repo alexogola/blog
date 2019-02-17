@@ -16,7 +16,7 @@ def profile(uname):
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user) 
+    return render_template("profile/profile.html", user = user)
 
 #a view function that will handle an update request
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
@@ -48,19 +48,19 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-#routing for may food blog/saving and displaying/2.for the user to receive an email each time a new blog is posted
-@main.route('/food', methods=['GET','POST'])
+#routing for may music blog/saving and displaying/2.for the user to receive an email each time a new blog is posted
+@main.route('/music', methods=['GET','POST'])
 @login_required
-def food():
+def music():
     blog_form=BlogForm()
-    if blog_form.validate_on_submit():        
-        food = Blog(category=blog_form.category.data,title = blog_form.title.data)
-        db.session.add(food)
+    if blog_form.validate_on_submit():
+        music = Blog(category=blog_form.category.data,title = blog_form.title.data)
+        db.session.add(music)
         db.session.commit()
     subscribers = Subscriber.query.all()
     for email in subscribers:
         mail_message("Hey Welcome To My Blog ","email/welcome_post",email.email,subscribers=subscribers)
-    return render_template('food.html',blog_form=blog_form) 
+    return render_template('music.html',blog_form=blog_form)
 
 #routing for subscribers/receive email after subscription
 @main.route('/', methods=['GET','POST'])
@@ -72,8 +72,8 @@ def subscriber():
         db.session.commit()
         mail_message("Hey Welcome To My Blog ","email/welcome_subscriber",subscriber.email,subscriber=subscriber)
     subscriber = Blog.query.all()
-    food = Blog.query.all()
-    return render_template('index.html',subscriber=subscriber,subscriber_form=subscriber_form,food=food) 
+    music = Blog.query.all()
+    return render_template('index.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
 
 #routing for the comments to display for each blog
 @main.route('/comments/<int:id>', methods=['GET','POST'])
@@ -84,7 +84,7 @@ def comment(id):
         db.session.add(new_comment)
         db.session.commit()
     comments = Comment.query.filter_by(blog_id=id)
-    return render_template('comment.html',comment_form=comment_form,comments=comments)    
+    return render_template('comment.html',comment_form=comment_form,comments=comments)
 
 #deleting each blog only if each user is authenticated
 @main.route('/delete/<int:id>', methods=['GET','POST'])
@@ -92,13 +92,13 @@ def delete(id):
     try:
         if current_user.is_authenticated:
             blog = Blog.query.filter_by(id=id).all()
-            for blogs in blog: 
+            for blogs in blog:
                 db.session.delete(blogs)
                 db.session.commit()
-            return redirect(url_for('main.food'))
+            return redirect(url_for('main.music'))
         return ''
     except Exception as e:
-        return(str(e))    
+        return(str(e))
 
 #deleting a comment by the admin
 @main.route('/delete1/<int:id>', methods=['GET','POST'])
@@ -107,13 +107,13 @@ def delete1(id):
         if current_user.is_authenticated:
             comment_form=CommentForm()
             comment = Comment.query.filter_by(comment_id=id).first()
-            for comments in comment: 
+            for comments in comment:
                 db.session.delete(comment)
                 db.session.commit()
             return redirect(url_for('main.comment'))
         return ''
     except Exception as e:
-        return(str(e))    
+        return(str(e))
 
 
 
@@ -124,12 +124,4 @@ def delete1(id):
 #         abort(401)
 #     g.db.execute('delete from entries WHERE id = ?', [postID])
 #     flash('Entry was deleted')
-#     return redirect(url_for('show_entries'))           
-
-
-
-
-
-
-
-
+#     return redirect(url_for('show_entries'))
