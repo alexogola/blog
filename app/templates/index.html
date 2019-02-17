@@ -23,53 +23,6 @@
       {% for category in music %}
     </div>
 
-    <div class="row">
-      <div class="container" style="background-color: #FFEBCD;width:1400px;">
-        <div class="col-md-12">
-          <br>
-          <div class="thumbnail" style="border: 1px solid #800000; width: 1300px;">
-            <p>{{category.title}}</p>
-            <hr style="color:black;display: block;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid #800000;
-            margin: 1em 0;
-            padding: 0; ">
-            <p>{{category.category}}</p>
-            <hr style="color:black;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid #800000;
-            margin: 1em 0;
-            padding: 0; ">
-            <p>{{category.posted}}</p>
-            <hr style="color:blue; width: 50%;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid #800000;
-            margin: 1em 0;
-            padding: 0; ">
-            <p><a href="/comments/{{category.id}}"><button style=" color: #800000;
-                text-align: center;
-                font-size: 15px;
-                padding: 10px;
-                border-radius: 8px;
-                width: 150px;">Comment</button></a></p>
-          </div>
-          {% if current_user.is_authenticated %}
-          <p><a href="/delete/{{category.id}}"><button style=" color: #800000;
-                text-align: center;
-                font-size: 15px;
-                padding: 10px;
-                border-radius: 8px;
-                width: 150px;">DELETE
-                BLOG</button></a></p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-
-  </div>
   {% endfor %}
 
   {% endblock %}
