@@ -11,12 +11,8 @@ from ..email import mail_message
 
 @main.route('/home', methods=['GET','POST'])
 def home():
-    subscriber_form=SubscriberForm()
-    if subscriber_form.validate_on_submit():
-        subscriber= Subscriber(email=subscriber_form.email.data,title = subscriber_form.title.data)
-    subscriber = Blog.query.all()
-    music = Blog.query.all()
-    return render_template('home.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
+
+    return render_template('home.html',)
 
 @main.route('/user/<uname>')
 def profile(uname):
