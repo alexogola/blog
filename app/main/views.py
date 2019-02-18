@@ -14,9 +14,6 @@ def home():
     subscriber_form=SubscriberForm()
     if subscriber_form.validate_on_submit():
         subscriber= Subscriber(email=subscriber_form.email.data,title = subscriber_form.title.data)
-        db.session.add(subscriber)
-        db.session.commit()
-        mail_message("Hey Welcome To My Blog ","email/welcome_subscriber",subscriber.email,subscriber=subscriber)
     subscriber = Blog.query.all()
     music = Blog.query.all()
     return render_template('index.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
