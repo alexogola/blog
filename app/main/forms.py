@@ -5,21 +5,22 @@ from ..models import Subscriber
 from wtforms import ValidationError
 
 class BlogForm(FlaskForm):
-    category = StringField('Post your Blog' ,validators=[Required()])
-    title = StringField('Entre Your Name' ,validators=[Required()])
+    category = StringField('<p style="color: #d90600; padding: 0px; margin: 0px;">Post Sumn</p>' ,validators=[Required()])
+    title = StringField('<p style="color: #d90600; padding: 0px; margin: 0px;">Enter Your Name<p>' ,validators=[Required()])
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
-    description = StringField('Write A comment' ,validators=[Required()])
+    description = StringField('<p style="color: #d90600; padding: 0px; margin: 0px;">Write A comment</p>' ,validators=[Required()])
     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    bio = TextAreaField('<p style="color: #d90600; padding: 0px; margin: 0px;">Tell us about you.</p>',validators = [Required()])
     submit = SubmitField('Submit')
 
 
 class SubscriberForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[Required(),Email()])
+    email = StringField('<p style="color: #d90600; padding: 0px; margin: 0px;">Enter Email Address</p>',validators=[Required(),Email()])
+    title = StringField('<p style="color: #d90600; padding: 0px; margin: 0px;">Enter Your Name</p>' ,validators=[Required()])
     submit = SubmitField('Subscribe')
 
     def validate_email(self,data_field):
