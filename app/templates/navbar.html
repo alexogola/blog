@@ -15,7 +15,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="../static/star.png" alt="Juice" width="160px"></a>
+            <a class="navbar-brand" href="{{url_for('main.home')}}"><img src="../static/star.png" alt="Juice" width="160px"></a>
         </div>
         <div class="navbar-collapse collapse" style="color: #ffffff;">
                 <ul class="nav navbar-nav" style="color: #ffffff;">
@@ -24,7 +24,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right" style="color: #ffffff; margin-bottom: 0px;">
             <li><a href="{{url_for('main.home')}}">Home</a></li>
-            <li><a href="#">Quotes</a></li>
+            <li><a href="{{url_for('main.quotes')}}">Quotes</a></li>
             <li><a href="{{url_for('main.music')}}"><strong>Post</strong></a></li>
             <li><a href="#">|</a></li>
             {% if current_user.is_authenticated %}

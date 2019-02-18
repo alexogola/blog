@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content%}
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Russo+One" rel="stylesheet">
+<style media="screen">
+    body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+  }
+
+  input[type=text], select {
+  width: 90%;
+  padding: 9px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 90%;
+  background-color: #A9A9A9;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #d90600;
+}
+</style>
+<div style="background-color: #d90600; height:530px;position: relative;bottom: 36px">
+  <div class="row">
+    <div class="col-md-6" style="text-align: center; padding-left: 5%;"><img src="../static/21.jpg" alt="21 Savage" height="530px">
+    </div>
+
+    <div class="col-md-6" style="text-align: center; padding-right: 5%; padding-top: 5%;">
+      <h2 style="text-align: center; color: #ffffff; font-family: 'Russo One', sans-serif;">"Lost his faith in Jesus Christ, he prayin' to a bandana. Police gunned his brother down..."</h2>
+      <p style="text-align: right; color: #ffffff; padding-bottom: 12px; padding-right: 8px;">21 Savage - Nothing new</p>
+      <div style="background-color: #000000; padding: 30px; margin-left:20px; margin-right:20px;">
+        <form action="#">
+    <input type="text" id="fname" name="firstname" placeholder="Your Email">
+    <input type="text" id="lname" name="lastname" placeholder="Your Name">
+
+    <input type="submit" value="Subscribe">
+  </form>
+
+      </div>
+    </div>
+    </div>
+  {% endblock %}

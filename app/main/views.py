@@ -14,6 +14,11 @@ def home():
 
     return render_template('home.html',)
 
+@main.route('/quotes', methods=['GET','POST'])
+def quotes():
+
+    return render_template('quotes.html',)
+
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
