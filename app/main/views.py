@@ -9,6 +9,18 @@ from datetime import datetime
 from ..email import mail_message
 
 
+@main.route('/home', methods=['GET','POST'])
+def home():
+    subscriber_form=SubscriberForm()
+    if subscriber_form.validate_on_submit():
+        subscriber= Subscriber(email=subscriber_form.email.data,title = subscriber_form.title.data)
+        db.session.add(subscriber)
+        db.session.commit()
+        mail_message("Hey Welcome To My Blog ","email/welcome_subscriber",subscriber.email,subscriber=subscriber)
+    subscriber = Blog.query.all()
+    music = Blog.query.all()
+    return render_template('index.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
+
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
@@ -17,6 +29,7 @@ def profile(uname):
         abort(404)
 
     return render_template("profile/profile.html", user = user)
+
 
 #a view function that will handle an update request
 @main.route('/user/<uname>/update',methods = ['GET','POST'])

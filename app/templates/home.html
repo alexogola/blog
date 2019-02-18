@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block navbar %}
+    {% include 'index.html' %}
+{% endblock %}
+{% block content%}
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Russo+One" rel="stylesheet">
+<style media="screen">
+    body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+  }
+</style>
+<div style="background-color: #d90600; height:530px;position: relative;bottom: 36px">
+  <div class="row">
+    <div class="col-md-6" style="text-align: center; padding-left: 5%;"><img src="../static/21.jpg" alt="21 Savage" height="530px">
+    </div>
+
+    <div class="col-md-6" style="text-align: center; padding-right: 5%; padding-top: 5%;">
+      <h2 style="text-align: center; color: #ffffff; font-family: 'Russo One', sans-serif;">"Lost his faith in Jesus Christ, he prayin' to a bandana. Police gunned his brother down..."</h2>
+      <p style="text-align: right; color: #ffffff; padding-bottom: 12px; padding-right: 8px;">21 Savage - Nothing new</p>
+      <div style="background-color: #000000; padding: 30px;">
+        <a href="{{url_for('main.subscriber')}}"></a>
+      {{ wtf.quick_form(subscriber_form) }}
+      </div>
+      {% for category in music %}
+    </div>
+    </div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="padding: 1%; text-align: center;">
+
+      <div class="card" style="text-align: center; margin: 0 auto;">
+        <div class="card-header" style="background-color: #000000; color: #ffffff; width: 200px; text-align: center; margin: 0 auto;">
+        <p style="text-align: center;">Author: {{category.title}}</p>
+        </div>
+        <div class="card-body well" style="width: 50%; margin: 0 auto;">
+          <h5 class="card-title" style="margin: 0 auto;"><p>Post: {{category.category}}</p></h5>
+          <p class="card-text">Date: {{category.posted}}</p>
+          <a href="/comments/{{category.id}}" class="btn btn-primary">Comment</a>
+          {% if current_user.is_authenticated %}
+          <a href="/delete/{{category.id}}" class="btn btn-danger">&nbsp;&nbsp;Delete&nbsp;&nbsp;</a>
+          {% endif %}
+        </div>
+      </div>
+
+
+
+        </div>
+        </div>
+        </div>
+  {% endfor %}
+
+
+  {% endblock %}
