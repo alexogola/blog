@@ -16,7 +16,7 @@ def home():
         subscriber= Subscriber(email=subscriber_form.email.data,title = subscriber_form.title.data)
     subscriber = Blog.query.all()
     music = Blog.query.all()
-    return render_template('index.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
+    return render_template('home.html',subscriber=subscriber,subscriber_form=subscriber_form,music=music)
 
 @main.route('/user/<uname>')
 def profile(uname):
