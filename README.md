@@ -58,6 +58,7 @@ Open the browser on http://localhost:5000/
 | Sign up | Enter email and password |   Sign in successful |
 | Log in | Enter email and password |   Login successful |
 | Comment | Enter comment and click post button |  Comment published successful |
+| View Quotes | Click Quotes tab on the menu |  Random quote is generated |
 
 
 ## License
