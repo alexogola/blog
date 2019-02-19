@@ -23,14 +23,14 @@ class User(UserMixin,db.Model):
     password_secure = db.Column(db.String(255))
     blogs = db.relationship('Blog',backref = 'user',lazy = "dynamic")
     comment = db.relationship('Comment',backref = 'user',lazy = "dynamic")
-   
 
-    #this decorator generates my password and passes it to the passecurecolumn 
+
+    #this decorator generates my password and passes it to the passecurecolumn
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
 
-    
+
     @password.setter
     def password(self, password):
         self.pass_secure = generate_password_hash(password)
@@ -56,7 +56,7 @@ class Blog(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     comment = db.relationship('Comment',backref = 'blogs',lazy = "dynamic")
     email = db.Column(db.String(255),unique = True,index = True)
- 
+
 
     def save_blog(self):
         db.session.add(self)
@@ -69,10 +69,10 @@ class Blog(db.Model):
 
     def delete_blog(self):
         db.session.query(Blog).delete()
-        db.session.commit()    
+        db.session.commit()
 
     def __repr__(self):
-        return f'User {self.name}'        
+        return f'User {self.name}'
 
 
 #creating a class comment and connecting the class to comment on my blogs
@@ -92,10 +92,22 @@ class Comment(db.Model):
     @classmethod
     def get_comments(cls,id):
         comments = Comment.query.all()
-        return comments 
+        return comments
 
     def __repr__(self):
         return f'User {self.name}'
+
+
+class Quote:
+    '''
+    Quote class to define Quote Objects
+    '''
+
+    def __init__(self,id,author,quote):
+        self.id =id
+        self.author = author
+
+        self.quote = quote
 
 #class subscriber has column email for the user to receive an email after subscription
 class Subscriber(UserMixin, db.Model):
@@ -114,8 +126,7 @@ class Subscriber(UserMixin, db.Model):
     @classmethod
     def get_subscribers(cls,id):
         return Subscriber.query.all()
-         
+
 
     def __repr__(self):
         return f'User {self.email}'
-
